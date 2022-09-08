@@ -1,3 +1,45 @@
 <resources>
     <string name="app_name">HomeGestureApp</string>
+    <string-array name="gestureValueList">
+        <item>Select a Gesture…</item>
+        <item>Turn On Lights</item>
+        <item>Turn Off Lights</item>
+        <item>Turn On Fan</item>
+        <item>Turn Off Fan</item>
+        <item>Increase Fan Speed</item>
+        <item>Decrease Fan Speed</item>
+        <item>Set Thermostat to specified temperature</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>Í
+    </string-array>
+    <string-array name="gestureIDList">
+        <item>default</item>
+        <item>h_light_on</item>
+        <item>h_light_off"</item>
+        <item>h_fan_on</item>
+        <item>h_fan_off</item>
+        <item>h_increase_fan_speed</item>
+        <item>h_decrease_fan_speed</item>
+        <item>h_set_thermo</item>
+        <item>h_0</item>
+        <item>h_1</item>
+        <item>h_2</item>
+        <item>h_3</item>
+        <item>h_4</item>
+        <item>h_5</item>
+        <item>h_6</item>
+        <item>h_7</item>
+        <item>h_8</item>
+        <item>h_9</item>Í
+    </string-array>
+    <string name="replayBtn">Replay</string>
+    <string name="practiceBtn">Practice</string>
 </resources>

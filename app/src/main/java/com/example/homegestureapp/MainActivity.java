@@ -2,9 +2,20 @@ package com.example.homegestureapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -15,16 +26,22 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private TextView mTextViewResult;
+    private String[] gestureIDList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextViewResult = findViewById(R.id.text_view_result);
+        // init spinner dropdown list
+        gestureIDList = getResources().getStringArray(R.array.gestureIDList);
+        Spinner gestureList = findViewById(R.id.gestureList);
+        gestureList.setOnItemSelectedListener(this);
+        ArrayAdapter<CharSequence> gestureListAdapter = ArrayAdapter.createFromResource(this, R.array.gestureValueList, android.R.layout.simple_spinner_item);
+        gestureListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gestureList.setAdapter(gestureListAdapter);
 
         OkHttpClient client = new OkHttpClient();
         String url = "http://10.18.195.55:5000/";
@@ -36,7 +53,12 @@ public class MainActivity extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(MainActivity.this, "unable to connect", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
 
             @Override
@@ -46,11 +68,27 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mTextViewResult.setText(myResponse);
+                            System.out.println(myResponse);
                         }
                     });
                 }
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String gestureSelected = parent.getItemAtPosition(position).toString();
+        if (!gestureSelected.equals("Select a Gesture…")) {
+            Intent previewGestureActivityIntent = new Intent(MainActivity.this, PreviewGestureActivity.class);
+            previewGestureActivityIntent.putExtra("gestureSelected", gestureSelected);
+            previewGestureActivityIntent.putExtra("gestureSelectedID", gestureIDList[position]);
+            startActivity(previewGestureActivityIntent);
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
