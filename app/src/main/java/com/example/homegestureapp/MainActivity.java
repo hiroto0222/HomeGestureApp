@@ -29,6 +29,7 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private String[] gestureIDList;
+    private String[] gestureNameList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         // init spinner dropdown list
         gestureIDList = getResources().getStringArray(R.array.gestureIDList);
+        gestureNameList = getResources().getStringArray(R.array.gestureNameList);
         Spinner gestureList = findViewById(R.id.gestureList);
         gestureList.setOnItemSelectedListener(this);
         ArrayAdapter<CharSequence> gestureListAdapter = ArrayAdapter.createFromResource(this, R.array.gestureValueList, android.R.layout.simple_spinner_item);
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         gestureList.setAdapter(gestureListAdapter);
 
         OkHttpClient client = new OkHttpClient();
-        String url = "http://10.18.195.55:5000/";
+        String url = "http://192.168.0.208:5000/";
 
         Request request = new Request.Builder()
                 .url(url)
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     MainActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            System.out.println(myResponse);
+                            Toast.makeText(MainActivity.this, "connected!", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Intent previewGestureActivityIntent = new Intent(MainActivity.this, PreviewGestureActivity.class);
             previewGestureActivityIntent.putExtra("gestureSelected", gestureSelected);
             previewGestureActivityIntent.putExtra("gestureSelectedID", gestureIDList[position]);
+            previewGestureActivityIntent.putExtra("gestureSelectedName", gestureNameList[position]);
             startActivity(previewGestureActivityIntent);
         }
     }

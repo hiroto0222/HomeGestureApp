@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PreviewGestureActivity">
+    tools:context=".PracticeGestureActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,28 +33,14 @@
 
         </LinearLayout>
 
-        <VideoView
-            android:id="@+id/gesturePreviewVideo"
+        <androidx.camera.view.PreviewView
+            android:id="@+id/previewView"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="500dp"
             android:layout_marginTop="20dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             app:layout_constraintTop_toBottomOf="@+id/layoutToolBar" />
-
-        <TextView
-            android:id="@+id/gestureTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gesturePreviewVideo"
-            app:layout_constraintVertical_bias="0.0"
-            tools:layout_editor_absoluteX="24dp" />
 
         <LinearLayout
             style="android:style/ButtonBar"
@@ -66,22 +52,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gestureTitle">
+            app:layout_constraintTop_toBottomOf="@+id/previewView">
 
             <Button
-                android:id="@+id/replayBtn"
+                android:id="@+id/recordBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:text="@string/replayBtn" />
+                android:text="@string/recordBtn" />
 
             <Button
-                android:id="@+id/practiceBtn"
+                android:id="@+id/uploadBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/practiceBtn" />
+                android:text="@string/uploadBtn" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

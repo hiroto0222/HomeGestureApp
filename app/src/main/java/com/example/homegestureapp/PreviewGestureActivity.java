@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -14,6 +13,7 @@ public class PreviewGestureActivity extends AppCompatActivity {
 
     private String gestureSelected;
     private String gestureSelectedID;
+    private String gestureSelectedName;
     private VideoView gestureVideoView;
 
     @SuppressLint("SetTextI18n")
@@ -28,8 +28,12 @@ public class PreviewGestureActivity extends AppCompatActivity {
         Intent intent = getIntent();
         gestureSelected = intent.getStringExtra("gestureSelected");
         gestureSelectedID = intent.getStringExtra("gestureSelectedID");
+        gestureSelectedName = intent.getStringExtra("gestureSelectedName");
 
         gestureTextView.setText("Gesture: " + gestureSelected);
+
+        findViewById(R.id.replayBtn).setOnClickListener(v -> handleReplay());
+        findViewById(R.id.practiceBtn).setOnClickListener(v -> handlePractice());
     }
 
     @Override
@@ -49,11 +53,15 @@ public class PreviewGestureActivity extends AppCompatActivity {
         gestureVideoView.start();
     }
 
-    public void handleReplay(View view) {
+    public void handleReplay() {
         initPlayer();
     }
 
-    public void handlePractice(View view) {
-
+    public void handlePractice() {
+        Intent practiceGestureActivityIntent = new Intent(PreviewGestureActivity.this, PracticeGestureActivity.class);
+        practiceGestureActivityIntent.putExtra("gestureSelected", gestureSelected);
+        practiceGestureActivityIntent.putExtra("gestureSelectedID", gestureSelectedID);
+        practiceGestureActivityIntent.putExtra("gestureSelectedName", gestureSelectedName);
+        startActivity(practiceGestureActivityIntent);
     }
 }
