@@ -169,6 +169,7 @@ public class PracticeGestureActivity extends AppCompatActivity implements View.O
                 checkPermissions(this);
                 recordBtn.setText(R.string.recordBtn);
                 recordBtn.setEnabled(true);
+                mediaFileName = null;
                 isRecording = false;
                 return;
             }
@@ -234,8 +235,6 @@ public class PracticeGestureActivity extends AppCompatActivity implements View.O
                             e.printStackTrace();
                         }
                         mediaFileName = null;
-                        Intent gotoMainActivity = new Intent(PracticeGestureActivity.this, MainActivity.class);
-                        startActivity(gotoMainActivity);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
