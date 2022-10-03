@@ -21,4 +21,5 @@ def frameExtractor(videopath,frames_path,count):
     cap.set(1,frame_no)
     ret,frame=cap.read()
     file_name = frames_path + "%#05d.png" % (count + 1)
-    cv2.write
+    cv2.imwrite(file_name, frame)
+    return file_name
