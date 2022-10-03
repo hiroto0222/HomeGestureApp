@@ -55,19 +55,25 @@ def getGestureByFileName(gestureFileName):
     return None
 
 
-gestureData = [GestureInfo("Num0", "0", "0"), GestureInfo("Num1", "1", "1"),
-               GestureInfo("Num2", "2", "2"), GestureInfo("Num3", "3", "3"),
-               GestureInfo("Num4", "4", "4"), GestureInfo("Num5", "5", "5"),
-               GestureInfo("Num6", "6", "6"), GestureInfo("Num7", "7", "7"),
-               GestureInfo("Num8", "8", "8"), GestureInfo("Num9", "9", "9"),
-               GestureInfo("FanDown", "Decrease Fan Speed", "10"),
-               GestureInfo("FanOn", "FanOn", "11"), GestureInfo(
-                   "FanOff", "FanOff", "12"),
-               GestureInfo("FanUp", "Increase Fan Speed", "13"),
-               GestureInfo("LightOff", "LightOff", "14"), GestureInfo(
-                   "LightOn", "LightOn", "15"),
-               GestureInfo("SetThermo", "SetThermo", "16")
-               ]
+gestureData = [
+    GestureInfo("Num0", "0", "0"),
+    GestureInfo("Num1", "1", "1"),
+    GestureInfo("Num2", "2", "2"),
+    GestureInfo("Num3", "3", "3"),
+    GestureInfo("Num4", "4", "4"),
+    GestureInfo("Num5", "5", "5"),
+    GestureInfo("Num6", "6", "6"),
+    GestureInfo("Num7", "7", "7"),
+    GestureInfo("Num8", "8", "8"),
+    GestureInfo("Num9", "9", "9"),
+    GestureInfo("FanDown", "Decrease Fan Speed", "10"),
+    GestureInfo("FanOn", "FanOn", "11"),
+    GestureInfo("FanOff", "FanOff", "12"),
+    GestureInfo("FanUp", "Increase Fan Speed", "13"),
+    GestureInfo("LightOff", "LightOff", "14"),
+    GestureInfo("LightOn", "LightOn", "15"),
+    GestureInfo("SetThermo", "SetThermo", "16")
+]
 
 # =============================================================================
 # Get the penultimate layer for trainig data
