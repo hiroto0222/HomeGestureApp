@@ -94,7 +94,7 @@ for file_name in os.listdir(train_data_path):
 # Recognize the gesture (use cosine similarity for comparing the vectors)
 # =============================================================================
 
-def gesture_detection(test_gesture_folder_path, test_gesture_file_name, mid_frame):
+def gesture_prediction(test_gesture_folder_path, test_gesture_file_name, mid_frame):
     """
     for each test gesture feature vector, compare against all training gesture feature vectors using
     cosine similarity methods to determine output label of test gesture.
@@ -129,22 +129,17 @@ def gesture_detection(test_gesture_folder_path, test_gesture_file_name, mid_fram
 if __name__ == "__main__":
     test_data_path = "test/"
     test_count = 0
-    with open('results.csv', 'w', newline='') as results_file:
+    with open('Results.csv', 'w', newline='') as results_file:
         fields_names = [
-            'Gesture File Name',
-            'Gesture Name',
             'Output Label'
         ]
         data_writer = csv.DictWriter(results_file, fieldnames=fields_names)
-        data_writer.writeheader()
 
         for test_gesture_file_name in os.listdir(test_data_path):
             if not test_gesture_file_name.startswith('frames'):
-                predicted_gesture_info = gesture_detection(test_data_path, test_gesture_file_name, test_count)
+                predicted_gesture_info = gesture_prediction(test_data_path, test_gesture_file_name, test_count)
                 test_count = test_count + 1
 
                 data_writer.writerow({
-                    'Gesture File Name': test_gesture_file_name,
-                    'Gesture Name': predicted_gesture_info.gesture_name,
                     'Output Label': predicted_gesture_info.gesture_output_label
                 })
